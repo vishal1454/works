@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vishal K (vishal1454) | Scientific & Philosophical Publications</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f6ff',
+                            100: '#e0edff',
+                            400: '#3882f6',
+                            500: '#2563eb',
+                            600: '#1d4ed8',
+                            900: '#1e3a8a',
+                        },
+                        accent: {
+                            cyan: '#06b6d4',
+                            emerald: '#10b981',
+                            purple: '#a855f7',
+                            amber: '#f59e0b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom styling & animations */
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .light .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+        }
+        .gradient-glow {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+        }
+        .light .card-hover:hover {
+            box-shadow: 0 20px 30px -10px rgba(37, 99, 235, 0.12);
+        }
+        .dark .card-hover:hover {
+            box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.5), 0 0 20px 0px rgba(37, 99, 235, 0.2);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans selection:bg-brand-500 selection:text-white relative overflow-x-hidden">
+
+    <!-- Background Ambient Glows -->
+    <div class="gradient-glow w-96 h-96 bg-brand-500 top-0 left-1/4"></div>
+    <div class="gradient-glow w-96 h-96 bg-accent-purple top-1/3 right-10"></div>
+    <div class="gradient-glow w-80 h-80 bg-accent-cyan bottom-10 left-10"></div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-slate-950/70 border-b border-slate-800/60 transition-colors duration-300 light:bg-white/80 light:border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-accent-cyan flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-brand-500/20 font-display">
+                    VK
+                </div>
+                <div>
+                    <h1 class="font-display font-bold text-lg sm:text-xl tracking-tight text-white dark:text-white light:text-slate-900">
+                        Vishal K <span class="text-xs text-brand-400 font-normal px-2 py-0.5 rounded-full bg-brand-500/10 border border-brand-500/20 ml-1">vishal1454</span>
+                    </h1>
+                    <p class="text-xs text-slate-400 light:text-slate-500">Research & Scientific Publications</p>
+                </div>
+            </div>
+
+            <!-- Header Actions -->
+            <div class="flex items-center space-x-3 sm:space-x-4">
+                <a href="https://github.com/vishal1454/works" target="_blank" rel="noopener noreferrer" 
+                   class="flex items-center space-x-2 text-xs sm:text-sm font-medium px-3.5 py-2 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700/60 transition-all light:bg-slate-100 light:text-slate-700 light:hover:bg-slate-200 light:border-slate-300">
+                    <i class="fa-brands fa-github text-base"></i>
+                    <span class="hidden sm:inline">Repository</span>
+                </a>
+                
+                <!-- Theme Toggle Button -->
+                <button id="themeToggleBtn" onclick="toggleTheme()" 
+                        class="w-10 h-10 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-amber-400 border border-slate-700/60 flex items-center justify-center transition-all light:bg-slate-100 light:text-slate-700 light:hover:bg-slate-200 light:border-slate-300"
+                        title="Toggle Light/Dark Theme">
+                    <i id="themeIcon" class="fa-solid fa-moon text-base"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative z-10 pt-12 pb-8 sm:pt-16 sm:pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
+        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-semibold mb-6 tracking-wide uppercase">
+            <i class="fa-solid fa-flask text-xs"></i>
+            <span>Open Access Publications</span>
+        </div>
+        <h2 class="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white light:text-slate-900 tracking-tight leading-tight max-w-4xl mx-auto">
+            Scientific Research & <br class="hidden sm:block">
+            <span class="bg-gradient-to-r from-brand-400 via-accent-cyan to-accent-purple bg-clip-text text-transparent">Philosophical Treatises</span>
+        </h2>
+        <p class="mt-4 sm:mt-6 text-base sm:text-lg text-slate-400 light:text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            Exploring multi-disciplinary frontiers ranging from polymer chemical mineralization to metaphysical determinism, causal matrices, and theoretical physics.
+        </p>
+
+        <!-- Search & Filter Bar -->
+        <div class="mt-8 max-w-2xl mx-auto space-y-4">
+            <div class="relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 light:text-slate-500"></i>
+                <input type="text" id="searchInput" oninput="filterPapers()" 
+                       placeholder="Search papers by title, topic, or keyword..." 
+                       class="w-full pl-11 pr-4 py-3.5 rounded-xl bg-slate-900/90 border border-slate-800 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 text-sm shadow-inner transition-all light:bg-white light:border-slate-300 light:text-slate-900 light:placeholder-slate-400">
+            </div>
+
+            <!-- Topic Badges Filter -->
+            <div class="flex flex-wrap items-center justify-center gap-2 pt-2" id="filterBadges">
+                <button onclick="setFilter('all')" class="filter-btn active-filter px-3 py-1.5 rounded-lg text-xs font-medium bg-brand-500 text-white transition-all shadow-sm">
+                    All Papers (4)
+                </button>
+                <button onclick="setFilter('material')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/60 transition-all light:bg-slate-100 light:text-slate-700 light:hover:bg-slate-200">
+                    Material Science
+                </button>
+                <button onclick="setFilter('metaphysics')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/60 transition-all light:bg-slate-100 light:text-slate-700 light:hover:bg-slate-200">
+                    Metaphysics
+                </button>
+                <button onclick="setFilter('theology')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/60 transition-all light:bg-slate-100 light:text-slate-700 light:hover:bg-slate-200">
+                    Theology & Determinism
+                </button>
+                <button onclick="setFilter('optics')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/60 transition-all light:bg-slate-100 light:text-slate-700 light:hover:bg-slate-200">
+                    Theology & Determinism
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Grid -->
+    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mb-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8" id="papersGrid">
+
+            <!-- Card 1: Plastic Degradation -->
+            <div class="paper-card glass-card rounded-2xl p-6 sm:p-7 card-hover flex flex-col justify-between relative overflow-hidden group" 
+                 data-category="material" 
+                 data-title="advanced hydrolysis plastic degradation pet mineralization vishal k"
+                 data-tags="Material Science & Environmental Engineering,Hydrolysis,PET Recycling">
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-medium">
+                            <i class="fa-solid fa-leaf text-xs"></i>
+                            <span>Material Science & Environmental</span>
+                        </span>
+                        <span class="text-xs text-slate-500 font-mono">PDF • Research Report</span>
+                    </div>
+
+                    <h3 class="font-display text-xl sm:text-2xl font-bold text-white light:text-slate-900 group-hover:text-brand-400 transition-colors leading-snug">
+                        Advanced Hydrolysis & Chemical Mineralization of Commercial PET Plastics
+                    </h3>
+
+                    <p class="text-sm text-slate-400 light:text-slate-600 leading-relaxed">
+                        An experimental and analytical approach to high-surface-area advanced oxidation and radical-induced polymer chain degradation using low-cost inorganic systems.
+                    </p>
+
+                    <div class="pt-2 flex flex-wrap gap-2 text-xs text-slate-400">
+                        <span class="px-2.5 py-1 rounded-md bg-slate-800/60 light:bg-slate-100 light:text-slate-600 border border-slate-700/40">Base-Catalyzed Hydrolysis</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-800/60 light:bg-slate-100 light:text-slate-600 border border-slate-700/40">Electro-Fenton Reaction</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-800/60 light:bg-slate-100 light:text-slate-600 border border-slate-700/40">PET Deconstruction</span>
+                    </div>
+                </div>
+
+                <div class="pt-6 mt-6 border-t border-slate-800/80 light:border-slate-200 flex items-center justify-between gap-3">
+                    <button onclick="openPdfViewer('final_edited_Project_Plastic_Degradation.pdf', 'Advanced Hydrolysis & Chemical Mineralization of Commercial PET Plastics')" 
+                            class="flex-1 inline-flex items-center justify-center space-x-2 py-2.5 px-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-medium text-xs sm:text-sm transition-all shadow-md shadow-brand-600/20">
+                        <i class="fa-solid fa-book-open text-xs"></i>
+                        <span>Read PDF</span>
+                    </button>
+                    
+                    <a href="final_edited_Project_Plastic_Degradation.pdf" download 
+                       class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 light:bg-slate-100 light:text-slate-700 light:hover:bg-slate-200 border border-slate-700/60 light:border-slate-300 transition-all"
+                       title="Download PDF">
+                        <i class="fa-solid fa-download text-sm"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 2: Theory of Life 2 -->
+            <div class="paper-card glass-card rounded-2xl p-6 sm:p-7 card-hover flex flex-col justify-between relative overflow-hidden group" 
+                 data-category="metaphysics" 
+                 data-title="theory of life 2 absolute causal matrix treatise determinism divine authorization blank sheet cosmos"
+                 data-tags="Metaphysics & Theoretical Physics,Causal Matrix,Determinism">
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-md bg-purple-500/10 text-purple-400 border border-purple-500/20 text-xs font-medium">
+                            <i class="fa-solid fa-atom text-xs"></i>
+                            <span>Metaphysics & Theoretical Physics</span>
+                        </span>
+                        <span class="text-xs text-slate-500 font-mono">PDF • 10-Chapter Treatise</span>
+                    </div>
+
+                    <h3 class="font-display text-xl sm:text-2xl font-bold text-white light:text-slate-900 group-hover:text-purple-400 transition-colors leading-snug">
+                        The Absolute Causal Matrix: Theory of Life - Volume 2
+                    </h3>
+
+                    <p class="text-sm text-slate-400 light:text-slate-600 leading-relaxed">
+                        A comprehensive 10-chapter treatise exploring total determinism, divine authorization models, temporal continuity, and the "Blank Sheet Cosmos" framework.
+                    </p>
+
+                    <div class="pt-2 flex flex-wrap gap-2 text-xs text-slate-400">
+                        <span class="px-2.5 py-1 rounded-md bg-slate-800/60 light:bg-slate-100 light:text-slate-600 border border-slate-700/40">Causal Determinism</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-800/60 light:bg-slate-100 light:text-slate-600 border border-slate-700/40">Blank Sheet Cosmos</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-800/60 light:bg-slate-100 light:text-slate-600 border border-slate-700/40">Ontology</span>
+                    </div>
+                </div>
+
+                <div class="pt-6 mt-6 border-t border-slate-800/80 light:border-slate-200 flex items-center justify-between gap-3">
+                    <button onclick="openPdfViewer('final_edited_Theory-of-Life-2.pdf', 'The Absolute Causal Matrix: Theory of Life - Volume 2')" 
+                            class="flex-1 inline-flex items-center justify-center space-x-2 py-2.5 px-4 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-medium text-xs sm:text-sm transition-all shadow-md shadow-purple-600/20">
+                        <i class="fa-solid fa-book-open text-xs"></i>
+                        <span>Read PDF</span>
+                    </button>
+                    
+                    <a href="final_edited_Theory-of-Life-2.pdf" download 
+                       class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 light:bg-slate-100 light:text-slate-700 light:hover:bg-slate-200 border border-slate-700/60 light:border-slate-300 transition-all"
+                       title="Download PDF">
+                        <i class="fa-solid fa-download text-sm"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 3: Theory of God -->
+            <div class="paper-card glass-card rounded-2xl p-6 sm:p-7 card-hover flex flex-col justify-between relative overflow-hidden group" 
+                 data-category="theology" 
+                 data-title="theory of god philosophical treatise monograph traditional theology absolute causal determinism supreme creator"
+                 data-tags="Philosophical Theology,Causal Determinism,Monograph">
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-md bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-medium">
+                            <i class="fa-solid fa-sun text-xs"></i>
+                            <span>Theology & Philosophy</span>
+                        </span>
+                        <span class="text-xs text-slate-500 font-mono">PDF • Philosophical Monograph</span>
+                    </div>
+
+                    <h3 class="font-display text-xl sm:text-2xl font-bold text-white light:text-slate-900 group-hover:text-amber-400 transition-colors leading-snug">
+                        Theory of God: Deconstructing Traditional Theology
+                    </h3>
+
+                    <p class="text-sm text-slate-400 light:text-slate-600 leading-relaxed">
+                        A rigorous philosophical monograph deconstructing traditional anthropomorphic theology in favor of absolute causal determinism and the true supreme creator mechanism.
+                    </p>
+
+                    <div class="pt-2 flex flex-wrap gap-2 text-xs text-slate-400">
+                        <span class="px-2.5 py-1 rounded-md bg-slate-800/60 light:bg-slate-100 light:text-slate-600 border border-slate-700/40">Theology Deconstruction</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-800/60 light:bg-slate-100 light:text-slate-600 border border-slate-700/40">Absolute Causality</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-800/60 light:bg-slate-100 light:text-slate-600 border border-slate-700/40">Philosophy</span>
+                    </div>
+                </div>
+
+                <div class="pt-6 mt-6 border-t border-slate-800/80 light:border-slate-200 flex items-center justify-between gap-3">
+                    <button onclick="openPdfViewer('final_edited_theory_of_god.pdf', 'Theory of God: Deconstructing Traditional Theology')" 
+                            class="flex-1 inline-flex items-center justify-center space-x-2 py-2.5 px-4 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-medium text-xs sm:text-sm transition-all shadow-md shadow-amber-600/20">
+                        <i class="fa-solid fa-book-open text-xs"></i>
+                        <span>Read PDF</span>
+                    </button>
+                    
+                    <a href="final_edited_theory_of_god.pdf" download 
+                       class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 light:bg-slate-100 light:text-slate-700 light:hover:bg-slate-200 border border-slate-700/60 light:border-slate-300 transition-all"
+                       title="Download PDF">
+                        <i class="fa-solid fa-download text-sm"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 4: Theory of Life (DIPA) -->
+            <div class="paper-card glass-card rounded-2xl p-6 sm:p-7 card-hover flex flex-col justify-between relative overflow-hidden group" 
+                 data-category="optics" 
+                 data-title="theory of life light lens geometric optics philosophical physics foundations vishal"
+                 data-tags="Geometric Optics,Philosophical Physics,Light & Lens">
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-md bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-xs font-medium">
+                            <i class="fa-solid fa-eye text-xs"></i>
+                            <span>DETERMINISM</span>
+                        </span>
+                        <span class="text-xs text-slate-500 font-mono">PDF • Treatise</span>
+                    </div>
+
+                    <h3 class="font-display text-xl sm:text-2xl font-bold text-white light:text-slate-900 group-hover:text-cyan-400 transition-colors leading-snug">
+                        DIPA: Theory of Life - Volume 1
+                    </h3>
+
+                    <p class="text-sm text-slate-400 light:text-slate-600 leading-relaxed">
+                        A Treatise on Absolute Psychological Environmental Determinism 
+                    </p>
+
+                    <div class="pt-2 flex flex-wrap gap-2 text-xs text-slate-400">
+                        <span class="px-2.5 py-1 rounded-md bg-slate-800/60 light:bg-slate-100 light:text-slate-600 border border-slate-700/40">Absolute Causality</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-800/60 light:bg-slate-100 light:text-slate-600 border border-slate-700/40">Psychology</span>
+                        <span class="px-2.5 py-1 rounded-md bg-slate-800/60 light:bg-slate-100 light:text-slate-600 border border-slate-700/40">Parental Attribution</span>
+                    </div>
+                </div>
+
+                <div class="pt-6 mt-6 border-t border-slate-800/80 light:border-slate-200 flex items-center justify-between gap-3">
+                    <button onclick="openPdfViewer('final_edited_theory_of_life.pdf', 'The Paradigm of Determinist Imprinting and Parental Attribution : Theory of Life - Volume 1')" 
+                            class="flex-1 inline-flex items-center justify-center space-x-2 py-2.5 px-4 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-medium text-xs sm:text-sm transition-all shadow-md shadow-cyan-600/20">
+                        <i class="fa-solid fa-book-open text-xs"></i>
+                        <span>Read PDF</span>
+                    </button>
+                    
+                    <a href="final_edited_theory_of_life.pdf" download 
+                       class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 light:bg-slate-100 light:text-slate-700 light:hover:bg-slate-200 border border-slate-700/60 light:border-slate-300 transition-all"
+                       title="Download PDF">
+                        <i class="fa-solid fa-download text-sm"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- No Results State -->
+        <div id="noResults" class="hidden text-center py-16">
+            <i class="fa-solid fa-file-circle-xmark text-4xl text-slate-600 mb-3"></i>
+            <h4 class="text-lg font-semibold text-slate-300 light:text-slate-700">No matching publications found</h4>
+            <p class="text-xs text-slate-500 mt-1">Try searching with a different term or filter choice.</p>
+        </div>
+    </main>
+
+    <!-- Modal PDF Preview Viewer -->
+    <div id="pdfModal" class="fixed inset-0 z-50 hidden flex-col bg-slate-950/90 backdrop-blur-xl transition-all duration-300">
+        <!-- Modal Top Header -->
+        <div class="h-16 px-4 sm:px-6 bg-slate-900 border-b border-slate-800 flex items-center justify-between light:bg-white light:border-slate-200">
+            <div class="flex items-center space-x-3 overflow-hidden">
+                <i class="fa-solid fa-file-pdf text-red-500 text-xl flex-shrink-0"></i>
+                <h3 id="pdfModalTitle" class="font-display font-semibold text-sm sm:text-base text-white light:text-slate-900 truncate">
+                    Document Viewer
+                </h3>
+            </div>
+            
+            <div class="flex items-center space-x-3 flex-shrink-0">
+                <a id="pdfModalDownload" href="#" download 
+                   class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium light:bg-slate-100 light:text-slate-700 light:hover:bg-slate-200 transition-all">
+                    <i class="fa-solid fa-download"></i>
+                    <span class="hidden sm:inline">Download</span>
+                </a>
+                <button onclick="closePdfViewer()" 
+                        class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-red-600/80 text-slate-400 hover:text-white flex items-center justify-center light:bg-slate-100 light:text-slate-600 transition-all">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- PDF Embedded Viewer Frame -->
+        <div class="flex-1 w-full bg-slate-950 light:bg-slate-200 relative">
+            <iframe id="pdfIframe" class="w-full h-full border-0" src="" title="PDF Viewer"></iframe>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="relative z-10 border-t border-slate-800/60 light:border-slate-200 bg-slate-950/80 light:bg-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p class="text-xs text-slate-500 light:text-slate-600 text-center sm:text-left">
+                &copy; 2026 <span class="font-semibold text-slate-300 light:text-slate-800">Vishal K (vishal1454)</span>. All research hosted on GitHub Pages.
+            </p>
+            <div class="flex items-center space-x-4 text-xs text-slate-400 light:text-slate-500">
+                <a href="https://github.com/vishal1454/works" target="_blank" class="hover:text-brand-400 transition-colors">
+                    <i class="fa-brands fa-github mr-1"></i> github.com/vishal1454/works
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // PDF Modal Functions
+        function openPdfViewer(pdfUrl, title) {
+            const modal = document.getElementById('pdfModal');
+            const iframe = document.getElementById('pdfIframe');
+            const modalTitle = document.getElementById('pdfModalTitle');
+            const modalDownload = document.getElementById('pdfModalDownload');
+
+            modalTitle.textContent = title;
+            modalDownload.href = pdfUrl;
+            iframe.src = pdfUrl;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePdfViewer() {
+            const modal = document.getElementById('pdfModal');
+            const iframe = document.getElementById('pdfIframe');
+
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            iframe.src = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Search & Filtering Logic
+        let currentFilter = 'all';
+
+        function setFilter(category) {
+            currentFilter = category;
+            
+            // Update button styles
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-500', 'text-white', 'shadow-sm');
+                btn.classList.add('bg-slate-800/80', 'text-slate-300', 'light:bg-slate-100', 'light:text-slate-700');
+            });
+
+            event.currentTarget.classList.remove('bg-slate-800/80', 'text-slate-300', 'light:bg-slate-100', 'light:text-slate-700');
+            event.currentTarget.classList.add('bg-brand-500', 'text-white', 'shadow-sm');
+
+            filterPapers();
+        }
+
+        function filterPapers() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.paper-card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                const titleData = card.getAttribute('data-title').toLowerCase();
+                const tags = card.getAttribute('data-tags').toLowerCase();
+
+                const matchesCategory = (currentFilter === 'all' || category === currentFilter);
+                const matchesSearch = query === '' || titleData.includes(query) || tags.includes(query);
+
+                if (matchesCategory && matchesSearch) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            const noResults = document.getElementById('noResults');
+            if (visibleCount === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        }
+
+        // Theme Toggle (Light / Dark Mode)
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                html.classList.add('light');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.remove('light');
+                html.classList.add('dark');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Keyboard Shortcut for Modal Close (ESC)
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closePdfViewer();
+            }
+        });
+    </script>
+</body>
+</html>
